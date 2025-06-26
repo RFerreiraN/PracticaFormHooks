@@ -1,30 +1,38 @@
-import {useState} from 'react';
+import { useState } from 'react';
+
 
 export const FormHooks = () => {
 
-  const [stateForm, setStateForm] = useState({
-    email : '',
-    username : '',
-    password : ''
+    const [stateForm, setStateForm] = useState({
+    email: '',
+    username: '',
+    password: ''
   })
 
   const { email, username, password } = stateForm;
 
-  const handleForm = ( { target } ) => {
-      const { name, value } = target;
+  const handleForm = ({ target }) => {
+    const { name, value } = target;
     setStateForm({
       ...stateForm,
-      [ name ] : value
+      [name]: value
     })
   }
 
-  const onSubmitForm = ( event ) => {
+
+   const onSubmitForm = (event) => {
     event.preventDefault()
-    console.log( stateForm )
+    setStateForm({
+      email: '',
+      username: '',
+      password: ''
+    })
+    console.log(stateForm)
+   
   }
 
   return (
-    <form onSubmit={ onSubmitForm }>
+    <form onSubmit={onSubmitForm}>
 
       <div className="form-group">
         <label htmlFor="email">Email</label>
@@ -34,8 +42,8 @@ export const FormHooks = () => {
           className="form-control"
           name="email"
           placeholder="Enter email"
-          value={ email }
-          onChange={ handleForm }
+          value={email}
+          onChange={handleForm}
         />
       </div>
 
@@ -47,8 +55,8 @@ export const FormHooks = () => {
           className="form-control"
           name="username"
           placeholder="Username"
-          value={ username }
-          onChange={ handleForm }
+          value={username}
+          onChange={handleForm}
         />
       </div>
 
@@ -60,12 +68,12 @@ export const FormHooks = () => {
           className="form-control"
           name="password"
           placeholder="Password"
-          value={ password }
-          onChange={ handleForm }
+          value={password}
+          onChange={handleForm}
         />
       </div>
 
-      <button type="submit" className="btn btn-primary">Submit</button>
+      <button type="submit" className="btn btn-primary" >Submit</button>
     </form>
   )
 }
